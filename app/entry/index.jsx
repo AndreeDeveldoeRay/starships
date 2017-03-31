@@ -4,7 +4,7 @@
 * @Email:  me@andreeray.se
 * @Filename: app.jsx
  * @Last modified by:   develdoe
- * @Last modified time: 2017-03-28T15:27:59+02:00
+ * @Last modified time: 2017-03-31T22:50:37+02:00
 */
 
 var React = require('react'),
@@ -22,7 +22,7 @@ var unsubscribe = store.subscribe(() =>{
     document.title = state.appName
 })
 
-store.dispatch(actions.changeAppName('DevelStrap'))
+store.dispatch(actions.changeAppName('DevelBootstrap'))
 store.dispatch(actions.addMovie('Star Wars','Sci-fi'))
 store.dispatch(actions.addMovie('Mad Max','Action'))
 store.dispatch(actions.addMovie('Logan','Action'))
@@ -39,6 +39,7 @@ var li = document.createElement("li");
 li.appendChild(document.createTextNode(''));
 li.innerHTML = 'Scripting <span class="blink">.</span>'
 ul.appendChild(li);
+document.title = "DevelBootstrap: Scripting"
 
 // This shows up when react renders
 store.dispatch(actions.addStatus('Rendering'))

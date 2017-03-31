@@ -3,8 +3,8 @@
 * @Date:   2017-03-05T16:09:24+01:00
 * @Email:  me@andreeray.se
 * @Filename: index.jsx
-* @Last modified by:   develdoe
-* @Last modified time: 2017-03-13T20:50:14+01:00
+ * @Last modified by:   develdoe
+ * @Last modified time: 2017-03-31T23:05:48+02:00
 */
 
 var axios = require('axios')
@@ -57,6 +57,7 @@ export var fetchLocation = () =>
             var loc = res.data.loc
             var baseUrl = 'http://maps.google.com?q='
             dispatch(completeLocationFetch(baseUrl+loc))
+            dispatch(clearStatus())
         })
     }
 }
