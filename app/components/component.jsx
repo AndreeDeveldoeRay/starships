@@ -4,7 +4,7 @@
 * @Email:  me@andreeray.se
 * @Filename: App.jsx
  * @Last modified by:   develdoe
- * @Last modified time: 2017-03-31T23:05:15+02:00
+ * @Last modified time: 2017-04-01T02:17:53+02:00
 */
 
 
@@ -12,17 +12,22 @@
 var React = require('react'),
     {connect} = require('react-redux'),
     Item = require('item'),
-    actions = require('actions')
+    actions = require('actions'),
+    Status = require('status')
+
+import { Jumbotron, PageHeader, Button } from 'react-bootstrap';
 
 var App = React.createClass({
-    componentWillMount() {
-        this.props.dispatch(actions.addStatus('Painting'))
-        document.title = this.props.appName + "test"
+
+
+    showLocation: function (e) {
+        e.preventDefault();
+        var win = window.open(this.props.map.url, '_blank')
+        win.focus()
     },
+
     render: function () {
         var {appName, appStatus, array, map} = this.props
-
-
 
         var renderArray = () => {
 
@@ -30,48 +35,70 @@ var App = React.createClass({
                 return (
                     <div id="array">
                         <h2>The Array:</h2>
-                        <ul>
+                            <table className="table">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Title</th>
+                              <th>Genre</th>
+                            </tr>
+                          </thead>
+                          <tbody>
                             {getArrayItems()}
-                        </ul>
+                          </tbody>
+                        </table>
                     </div>
                 )
             }
         },
+
         getArrayItems = () => {
+            var counter = 0
             return array.map((movie) => {
+                counter++
+                console.log(counter)
                 return (
-                    <Item key={movie.id} {...movie} />
+                    <Item key={movie.id} {...movie} counter={counter}  />
                 )
             })
         },
+
         renderApi = () => {
             if (map.url){
                 return (
                     <div id="api">
                         <h2>The Api</h2>
-                            <p>{map.url}</p>
+                        <Button onClick={this.showLocation}>Show your location</Button>
                     </div>
                 )
             }
         },
+
         renderApplication = () => {
-            if (!appStatus[0]) { // [undefined] = idle
+            if (appStatus === "idle") {
                 return (
                     <div>
-                        <div id="appname">
-                            <h2>{appName}</h2>
+                        <Jumbotron bsClass="text-center">
+                          <h1>{appName}</h1>
+                          <p>React app development with Bootstrap</p>
+                        </Jumbotron>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-sm-6">
+                                    {renderArray()}
+                                </div>
+                                <div className="col-sm-6">
+                                    {renderApi()}
+                                </div>
+                            </div>
                         </div>
-                        {renderArray()}
-                        {renderApi()}
+
                     </div>
                 )
             } else {
                 return (
-                    <div id="status">
-                        <ul id="application-status">
-                            <li>Loading </li>
-                            <li>Scripting <span className="blink">.</span></li>
-                        </ul>
+                    <div>
+                        <span className="blink">{appStatus}</span>
                     </div>
                 )
             }

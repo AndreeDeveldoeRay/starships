@@ -4,7 +4,7 @@
 * @Email:  me@andreeray.se
 * @Filename: index.jsx
  * @Last modified by:   develdoe
- * @Last modified time: 2017-03-31T23:05:48+02:00
+ * @Last modified time: 2017-04-01T01:46:18+02:00
 */
 
 var axios = require('axios')
@@ -16,15 +16,10 @@ export var changeAppName = (appName) =>
         appName
     }
 }
-export var addStatus = (status) => {
+export var changeStatus = (status) => {
     return {
-        type: 'ADD_STATUS',
+        type: 'CHANGE_STATUS',
         status
-    }
-}
-export var clearStatus = () => {
-    return {
-        type: 'CLEAR_STATUS',
     }
 }
 export var addMovie = (title,genre) =>
@@ -52,13 +47,15 @@ export var fetchLocation = () =>
 {
     return (dispatch, getState) =>
     {
+        dispatch(changeStatus("Fetching"))
         dispatch(startLocationFetch())
         axios.get('http://ipinfo.io').then(function (res) {
             var loc = res.data.loc
             var baseUrl = 'http://maps.google.com?q='
             dispatch(completeLocationFetch(baseUrl+loc))
-            dispatch(clearStatus())
+            dispatch(changeStatus("idle"))
         })
+
     }
 }
 export var completeLocationFetch = (url) =>

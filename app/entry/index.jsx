@@ -4,7 +4,7 @@
 * @Email:  me@andreeray.se
 * @Filename: app.jsx
  * @Last modified by:   develdoe
- * @Last modified time: 2017-03-31T22:50:37+02:00
+ * @Last modified time: 2017-04-01T01:40:40+02:00
 */
 
 var React = require('react'),
@@ -15,14 +15,17 @@ var React = require('react'),
 var store = require('store').store(),
     actions = require('actions')
 
+var appName = "DevelBootstrap"
+document.title = appName
+
 // Redux
 // ######################################
 var unsubscribe = store.subscribe(() =>{
     var state = store.getState()
-    document.title = state.appName
 })
 
-store.dispatch(actions.changeAppName('DevelBootstrap'))
+store.dispatch(actions.changeStatus('Scripting'))
+store.dispatch(actions.changeAppName(appName))
 store.dispatch(actions.addMovie('Star Wars','Sci-fi'))
 store.dispatch(actions.addMovie('Mad Max','Action'))
 store.dispatch(actions.addMovie('Logan','Action'))
@@ -32,17 +35,7 @@ store.dispatch(actions.fetchLocation())
 // Bootstraping
 // ########################################
 
-// Inject splash information
-var ul = document.getElementById('application-status');
-ul.innerHTML = '<li>Loading </li>'
-var li = document.createElement("li");
-li.appendChild(document.createTextNode(''));
-li.innerHTML = 'Scripting <span class="blink">.</span>'
-ul.appendChild(li);
-document.title = "DevelBootstrap: Scripting"
-
-// This shows up when react renders
-store.dispatch(actions.addStatus('Rendering'))
-
+// Bootstrap
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(<Provider store={store}><Component/></Provider>, document.getElementById('app'))

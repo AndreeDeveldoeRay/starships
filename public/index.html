@@ -4,13 +4,13 @@
 @Email:  me@andreeray.se
 @Filename: index.html
 @Last modified by:   develdoe
-@Last modified time: 2017-03-31T22:49:10+02:00
+@Last modified time: 2017-04-01T01:40:13+02:00
 -->
 <!DOCTYPE html>
 <html>
 <head>
     <!-- META ################################### -->
-    <title>DevelBootstrap: Loading</title>
+    <title>Loading</title>
     <meta charset=utf-8>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SCROLLS ################################ -->
@@ -18,19 +18,11 @@
     <!-- Styles that needs to be applied before react goes here -->
     <style>
     body, a {
-        background: #252525;
-        color: #ccc; }
-    #status{
-        position: fixed;
-        top:10px;
-        left:10px;
-        font-size: 12px;
-    }
-    .splash-dot {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-    }
+        background: #fff;
+        color: #333;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.42857143; }
     .blink {
          animation-duration: .2s;
          animation-name: blink;
@@ -47,10 +39,8 @@
 <body>
     <!-- WORLD ################################## -->
     <div id=app>
-        <div id="status">
-            <ul id="application-status">
-                <li>Loading <span class="blink">.</span></li>
-            </ul>
+        <div>
+            <span id="status" class="blink">Loading</span>
         </div>
     </div>
     <!-- SPELLS ################################# -->

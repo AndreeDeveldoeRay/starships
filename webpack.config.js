@@ -4,12 +4,14 @@
 * @Email:  me@andreeray.se
 * @Filename: webpack.config.js
  * @Last modified by:   develdoe
- * @Last modified time: 2017-03-28T15:07:14+02:00
+ * @Last modified time: 2017-04-01T00:31:26+02:00
 */
 
 
 
-var webpack = require('webpack')
+var
+    webpack = require('webpack'),
+    path    = require('path')
 
 module.exports = {
     entry: [
@@ -35,12 +37,40 @@ module.exports = {
     module: {
         loaders: [
             {
+                test: /\.jsx?$/,
                 loader: 'babel-loader',
                 query: {
                     presets: ['react','es2015','stage-0']
                 },
-                test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"
+            },
+            {
+                test: /\.png$/,
+                loader: "url-loader?limit=100000"
+            },
+            {
+                test: /\.jpg$/,
+                loader: "file-loader"
+            },
+            {
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url?limit=10000&mimetype=application/font-woff'
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url?limit=10000&mimetype=application/octet-stream'
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'file'
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url?limit=10000&mimetype=image/svg+xml'
             }
         ]
     },
