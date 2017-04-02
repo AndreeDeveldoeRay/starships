@@ -4,14 +4,14 @@
 @Email:  me@andreeray.se
 @Filename: readme.md
 @Last modified by:   develdoe
-@Last modified time: 2017-03-31T22:45:01+02:00
+@Last modified time: 2017-04-02T19:09:15+02:00
 -->
 
 
 
-# DevelStrap, React & Redux & Bootstrap
+# Star Ships
 
-Bootstrapping React app development with Bootstrap
+Fan site for Start Citizen. Star Ship loadouts.
 
 ## Webpack & Babel
 

@@ -4,14 +4,14 @@
 * @Email:  me@andreeray.se
 * @Filename: server.js
  * @Last modified by:   develdoe
- * @Last modified time: 2017-03-31T22:41:03+02:00
+ * @Last modified time: 2017-04-02T19:06:17+02:00
 */
 
 
 
 const   EXPRESS = require('express'),
         APP     = EXPRESS(),
-        PORT = process.env.PORT || 3004
+        PORT = process.env.PORT || 3005
 
 APP.use(function(req,res,next){
     if (req.headers['x-forwarded-proto'] === 'https') {
