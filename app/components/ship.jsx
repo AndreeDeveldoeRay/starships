@@ -4,7 +4,7 @@
 * @Email:  me@andreeray.se
 * @Filename: App.jsx
  * @Last modified by:   develdoe
- * @Last modified time: 2017-04-04T23:04:14+02:00
+ * @Last modified time: 2017-04-05T01:24:09+02:00
 */
 
 
@@ -20,58 +20,63 @@ import { Jumbotron, PageHeader, Button } from 'react-bootstrap';
 var App = React.createClass({
 
     getInitialState() {
+        var that = this
         return {
             ships: [],
-            gameComponents: []
+            myGameArea: {
+                canvas : document.createElement("canvas"),
+                start : function() {
+                    this.canvas.width = 480;
+                    this.canvas.height = 270;
+                    this.context = this.canvas.getContext("2d");
+                    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                    this.interval = setInterval(that.updateGameArea, 20);
+                },
+                clear : function() {
+                    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                }
+            }
         }
     },
 
+    updateGameArea() {
+        this.state.myGameArea.clear()
+        this.state.redGamePiece.x += 1;
+        this.state.yellowGamePiece.x += 1;
+        this.state.yellowGamePiece.y += 1;
+        this.state.blueGamePiece.x += 1;
+        this.state.blueGamePiece.y -= 1;
+        this.state.redGamePiece.update();
+        this.state.yellowGamePiece.update();
+        this.state.blueGamePiece.update();
+    },
+
+    component(width, height, color, x, y) {
+        var that = this
+        var component = {}
+        component.width = width;
+        component.height = height;
+        component.x = x;
+        component.y = y;
+        component.update = function(){
+            var ctx = that.state.myGameArea.context;
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+        return component
+    },
+
     componentDidMount() {
+        var that = this
         this.props.dispatch(actions.changeStatus("idle"))
 
-        var myGameArea = {
-            canvas : document.createElement("canvas"),
-            start : function() {
-                this.canvas.width = 480;
-                this.canvas.height = 270;
-                this.context = this.canvas.getContext("2d");
-                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-                this.interval = setInterval(updateGameArea, 20);
-            },
-            clear : function() {
-                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            }
-        }
+        this.state.myGameArea.start()
 
-        function component(width, height, color, x, y) {
-            this.width = width;
-            this.height = height;
-            this.x = x;
-            this.y = y;
-            this.update = function(){
-                var ctx = myGameArea.context;
-                ctx.fillStyle = color;
-                ctx.fillRect(this.x, this.y, this.width, this.height);
-            }
-        }
-
-        function updateGameArea() {
-            myGameArea.clear()
-            redGamePiece.x += 1;
-            yellowGamePiece.x += 1;
-            yellowGamePiece.y += 1;
-            blueGamePiece.x += 1;
-            blueGamePiece.y -= 1;
-            redGamePiece.update();
-            yellowGamePiece.update();
-            blueGamePiece.update();
-        }
-
-        myGameArea.start()
-        var redGamePiece = new component(75, 75, "red", 10, 10);
-        var yellowGamePiece = new component(75, 75, "yellow", 50, 60);
-        var blueGamePiece = new component(75, 75, "blue", 10, 110);
-
+        this.setState({
+            redGamePiece: this.component(75, 75, "red", 10, 10),
+            yellowGamePiece: this.component(75, 75, "yellow", 50, 60),
+            blueGamePiece: this.component(75, 75, "blue", 10, 110)
+        })
     },
 
     Ship (e) {
