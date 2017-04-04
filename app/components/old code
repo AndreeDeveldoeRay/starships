@@ -1,0 +1,52 @@
+var renderArray = () => {
+
+    if (array.length > 0) {
+        return (
+            <div id="array">
+                <h2>The Array:</h2>
+                    <table className="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Title</th>
+                      <th>Genre</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {getArrayItems()}
+                  </tbody>
+                </table>
+            </div>
+        )
+    }
+},
+
+getArrayItems = () => {
+    var counter = 0
+    return array.map((movie) => {
+        counter++
+        return (
+            <Item key={movie.id} {...movie} counter={counter}  />
+        )
+    })
+},
+
+renderApi = () => {
+    if (map.url){
+        return (
+            <div id="api">
+                <h2>The Api</h2>
+                <Button onClick={this.showLocation}>Show your location</Button>
+            </div>
+        )
+    }
+},
+
+
+
+
+showLocation: function (e) {
+    e.preventDefault();
+    var win = window.open(this.props.map.url, '_blank')
+    win.focus()
+},

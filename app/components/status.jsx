@@ -4,7 +4,7 @@
  * @Email:  me@andreeray.se
  * @Filename: status.jsx
  * @Last modified by:   develdoe
- * @Last modified time: 2017-04-01T01:15:37+02:00
+ * @Last modified time: 2017-04-02T20:36:05+02:00
  */
 
 
@@ -20,4 +20,5 @@
          )
      }
  })
+ 
  module.exports = connect()(status)

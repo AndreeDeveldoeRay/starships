@@ -1,7 +1,7 @@
 {
-  "name": "react-component-bootstrap",
-  "version": "0.0.0",
-  "description": "Bootstrapping React app development with Bootstrap",
+  "name": "react-js-game",
+  "version": "0.1.0",
+  "description": "JavaScript game",
   "main": "entry.jsx",
   "scripts": {
     "test": "karma start",

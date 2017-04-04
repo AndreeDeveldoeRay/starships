@@ -4,18 +4,18 @@
 * @Email:  me@andreeray.se
 * @Filename: app.jsx
  * @Last modified by:   develdoe
- * @Last modified time: 2017-04-01T01:40:40+02:00
+ * @Last modified time: 2017-04-02T20:51:23+02:00
 */
 
 var React = require('react'),
     ReactDOM = require('react-dom'),
     {Provider} = require('react-redux'),
-    Component = require('component')
+    Ship = require('ship')
 
 var store = require('store').store(),
     actions = require('actions')
 
-var appName = "DevelBootstrap"
+var appName = "Star Ships"
 document.title = appName
 
 // Redux
@@ -26,11 +26,6 @@ var unsubscribe = store.subscribe(() =>{
 
 store.dispatch(actions.changeStatus('Scripting'))
 store.dispatch(actions.changeAppName(appName))
-store.dispatch(actions.addMovie('Star Wars','Sci-fi'))
-store.dispatch(actions.addMovie('Mad Max','Action'))
-store.dispatch(actions.addMovie('Logan','Action'))
-store.dispatch(actions.removeMovie(1))
-store.dispatch(actions.fetchLocation())
 
 // Bootstraping
 // ########################################
@@ -38,4 +33,4 @@ store.dispatch(actions.fetchLocation())
 // Bootstrap
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
-ReactDOM.render(<Provider store={store}><Component/></Provider>, document.getElementById('app'))
+ReactDOM.render(<Provider store={store}><Ship/></Provider>, document.getElementById('app'))

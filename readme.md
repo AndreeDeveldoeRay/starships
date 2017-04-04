@@ -4,14 +4,14 @@
 @Email:  me@andreeray.se
 @Filename: readme.md
 @Last modified by:   develdoe
-@Last modified time: 2017-04-02T19:09:15+02:00
+@Last modified time: 2017-04-05T00:57:38+02:00
 -->
 
 
 
 # Star Ships
 
-Fan site for Start Citizen. Star Ship loadouts.
+JavaScript game 
 
 ## Webpack & Babel
 
